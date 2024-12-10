@@ -2,19 +2,18 @@ pipeline {
     agent any
     parameters {
         choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
-        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
+        // string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
         // booleanParam(name: 'install_wget', defaultValue: true, description: 'Install wget')
         // booleanParam(name: 'install_top', defaultValue: true, description: 'Install top')
     }
     stages{
-        
         stage('main_pipline'){
             steps{
                 echo 'statring main pipline'
                 sleep "${sleep_time}"
             } //error with artifact
         }
-       stage('pre-requisites'){
+        stage('pre-requisites'){
             steps{
                 echo 'Checking pre-requisites'
                 sleep "${sleep_time}"
@@ -31,7 +30,7 @@ pipeline {
                 '''
             }
         }
-        }  stage('trigger_spell_check_pipline'){
+        stage('trigger_spell_check_pipline'){
             steps{
                 build job: 'spellcheck', wait: true
             } //error with artifact
@@ -46,9 +45,10 @@ pipeline {
         stage('trigger_test_pipline'){
             steps{
                 build job: 'details_app_test', wait: true
-            } //
+            }
+        }
 
-         stage('trigger_build_check_pipline'){
+        stage('trigger_build_check_pipline'){
          
             steps{
                 build job: 'details_app_build', wait: true, parameters: job_params
