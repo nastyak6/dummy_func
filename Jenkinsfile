@@ -4,9 +4,6 @@ pipeline {
         choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
         string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
     }
-    triggers {
-        cron('0 21 * * *') // Runs every day at 9 PM (21:00)
-    }
     stages {
         stage('main_pipeline') {
             steps {
