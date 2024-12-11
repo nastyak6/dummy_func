@@ -1,4 +1,4 @@
-### dummy_func
+# dummy_func
 
 dummy_func is a simple Python project designed to demonstrate continuous integration and continuous deployment (CI/CD) practices. It includes a basic function and corresponding unit tests to showcase automated testing workflows.
 Features
@@ -7,11 +7,11 @@ Features
     Unit Tests: Validates the output of the say_hello function.
 
 ## Getting Started
-# Prerequisites
+### Prerequisites
 
     Python 3.x
 
-# Installation
+### Installation
 
     Clone the Repository:
 
@@ -27,17 +27,17 @@ Install Dependencies:
 
     pip install -r requirements.txt
 
-# Usage
+### Usage
 
 from hello import say_hello
 
 print(say_hello())  # Outputs: Hello, World!
 
-# Running Tests
+### Running Tests
 
 python -m unittest discover -s tests
 
-# Contributing
+### Contributing
 
     Fork the repository.
     Create a new branch (git checkout -b feature-branch).
