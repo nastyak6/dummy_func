@@ -13,11 +13,8 @@ pipeline {
         stage('Install Python') {
             steps {
                 sh '''
-                    if ! command -v python3 &> /dev/null
-                    then
                         sudo apt update
                         sudo apt install -y python3 python3-venv
-                    fi
                 '''
             }
         }
