@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
-        // string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
+        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
         // booleanParam(name: 'install_wget', defaultValue: true, description: 'Install wget')
         // booleanParam(name: 'install_top', defaultValue: true, description: 'Install top')
     }
