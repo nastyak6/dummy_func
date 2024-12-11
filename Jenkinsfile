@@ -10,10 +10,22 @@ pipeline {
                 echo 'Starting main pipeline'
             }
         }
+        stage('Install Python') {
+            steps {
+                sh '''
+                    if ! command -v python3 &> /dev/null
+                    then
+                        sudo apt update
+                        sudo apt install -y python3 python3-venv
+                    fi
+                '''
+            }
+        }
         stage('Setup') {
             steps {
                 echo 'Setting up the environment...'
                 sh '''
+
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install --upgrade pip
