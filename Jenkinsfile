@@ -11,31 +11,37 @@ pipeline {
         stage('main_pipeline') {
             steps {
                 echo 'Starting main pipeline'
-                sleep time: sleep_time.toInteger(), unit: 'SECONDS'
             }
         }
-        stage('pre-requisites') {
+        stage('Setup') {
             steps {
-                echo 'Checking pre-requisites'
-                sleep time: sleep_time.toInteger(), unit: 'SECONDS'
+                echo 'Setting up the environment...'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install unittest
+                    '''
             }
         }
+
         stage('trigger_spell_check_pipeline') {
             steps {
                 echo 'Checking spell check'
-                sleep time: sleep_time.toInteger(), unit: 'SECONDS'
             }
         }
         stage('trigger_syntax_check_pipeline') {
             steps {
                 echo 'Checking syntax check'
-                sleep time: sleep_time.toInteger(), unit: 'SECONDS'
             }
         }
-        stage('trigger_test_pipeline') {
+        stage('Run Unit Tests') {
             steps {
-                echo 'Testing'
-                sleep time: sleep_time.toInteger(), unit: 'SECONDS'
+                echo 'Running unit tests...'
+                sh '''
+                    . venv/bin/activate
+                    python -m unittest discover -s . -p "test_*.py"
+                '''
             }
         }
     }

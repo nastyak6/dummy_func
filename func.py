@@ -1,1 +1,2 @@
-print("Hello world")
+def say_hello():
+    return "Hello, World!"
