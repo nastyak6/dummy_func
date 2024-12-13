@@ -16,11 +16,11 @@ pipeline {
         }
         stage('Install Python') {
             steps {
-                    sh '''
+                sh '''
                     whoami
                     apt update
                     apt install -y python3 python3-venv
-                    '''
+                '''
                 }
             }
         }
