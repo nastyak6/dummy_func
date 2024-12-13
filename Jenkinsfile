@@ -13,8 +13,8 @@ pipeline {
             steps {
                 sh '''
                     whoami
-                    sudo apt update
-                    sudo apt install -y python3 python3-venv
+                    apt update
+                    apt install -y python3 python3-venv
                 '''
                 }
             }
