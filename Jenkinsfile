@@ -23,7 +23,7 @@ pipeline {
                 '''
                 }
             }
-        }
+        
         stage('Setup') {
             steps {
                 echo 'Setting up the environment...'
