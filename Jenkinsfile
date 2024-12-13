@@ -56,7 +56,7 @@ pipeline {
                     sh """
                     curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
                         -H "Accept: application/vnd.github.v3+json" \
-                        https://api.github.com/repos/your-username/your-repo/releases \
+                        https://api.github.com/repos/nastyak6/dummy_func/releases \
                         -d '{"tag_name": "${tag}", "name": "${tag}", "body": "Release ${tag}", "draft": false, "prerelease": false}'
                     """
                 }
