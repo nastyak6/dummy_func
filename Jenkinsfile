@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        any {
-            image 'jenkins/ssh-agent:jdk17'
-            args '--user=root' // Force pipeline steps to run as root
-        }
-    }
+    agent any
     // triggers {
     //     // cron('*/10 * * * *') // Runs every day at 11 PM (23:00)
     // }
