@@ -5,7 +5,7 @@ pipeline {
         string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
     }
     triggers {
-        cron('0 23 * * *') // Runs every day at 11 PM (23:00)
+        cron('*/5 * * * *') // Runs every day at 11 PM (23:00)
     }
     stages {
         stage('main_pipeline') {
