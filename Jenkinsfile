@@ -16,10 +16,9 @@ pipeline {
         }
         stage('Install Python') {
             steps {
-                echo 'Installing Python...'
-                retry(3) {
                     sh '''
-                    apt update -y
+                    whoami
+                    apt update
                     apt install -y python3 python3-venv
                     '''
                 }
