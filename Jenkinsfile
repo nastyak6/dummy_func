@@ -5,9 +5,9 @@ pipeline {
             args '--user=root' // Force pipeline steps to run as root
         }
     }
-    triggers {
-        // cron('*/10 * * * *') // Runs every day at 11 PM (23:00)
-    }
+    // triggers {
+    //     // cron('*/10 * * * *') // Runs every day at 11 PM (23:00)
+    // }
     stages {
         stage('main_pipeline') {
             steps {
