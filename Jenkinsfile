@@ -23,7 +23,7 @@ pipeline {
                 sh '''
 
                     python3 -m venv venv
-                    . venv/bin/activates
+                    . venv/bin/activate
                     '''
             }
         }
