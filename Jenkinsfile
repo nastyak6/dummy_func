@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
-        string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
-    }
     triggers {
         cron('*/5 * * * *') // Runs every day at 11 PM (23:00)
     }
