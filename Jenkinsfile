@@ -13,6 +13,7 @@ pipeline {
             steps {
                 sh '''
                     whoami
+                    usermod -aG sudo jenkins
                     apt update
                     apt install -y python3 python3-venv
                 '''
