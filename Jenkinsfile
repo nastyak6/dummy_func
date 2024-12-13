@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    parameters {
-        // choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
-        // string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
+    environment {
         GITHUB_TOKEN = credentials('github-token')
     }
     stages {
@@ -25,7 +23,7 @@ pipeline {
                 sh '''
 
                     python3 -m venv venv
-                    . venv/bin/activate
+                    . venv/bin/activateS
                     '''
             }
         }
