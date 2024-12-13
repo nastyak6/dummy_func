@@ -1,8 +1,9 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
-        string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
+        // choice(name: 'host', choices: ['worker11', 'worker2'], description: 'Choose the host to configure')
+        // string(name: 'sleep_time', defaultValue: '2', description: 'Time to sleep')
+        GITHUB_TOKEN = credentials('github-token')
     }
     stages {
         stage('main_pipeline') {
@@ -46,6 +47,21 @@ pipeline {
                     . venv/bin/activate
                     python -m unittest discover -s . -p "test_*.py"
                 '''
+            }
+        }
+
+        stage('Create GitHub Release') {
+            steps {
+                script {
+                    def timestamp = sh(script: "date +%Y%m%d%H%M%S", returnStdout: true).trim()
+                    def tag = "v1.0-${timestamp}"
+                    sh """
+                    curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+                        -H "Accept: application/vnd.github.v3+json" \
+                        https://api.github.com/repos/your-username/your-repo/releases \
+                        -d '{"tag_name": "${tag}", "name": "${tag}", "body": "Release ${tag}", "draft": false, "prerelease": false}'
+                    """
+                }
             }
         }
     }
