@@ -19,11 +19,8 @@ pipeline {
                 echo 'Installing Python...'
                 retry(3) {
                     sh '''
-                    apt update -y || sudo rm -rf /var/lib/apt/lists/*
-                    DEBIAN_FRONTEND=noninteractive apt install -y python3 python3-venv || {
-                        echo "Failed to install Python";
-                        exit 1;
-                    }
+                    apt update -y
+                    apt install -y python3 python3-venv
                     '''
                 }
             }
