@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        worker11 {
-            image 'jenkins/ssh-agent:jdk17'
-            args '--user=root' // Force pipeline steps to run as root
-        }
-        worker2 {
+        any {
             image 'jenkins/ssh-agent:jdk17'
             args '--user=root' // Force pipeline steps to run as root
         }
