@@ -1,0 +1,1 @@
+Set the environment variables SAMBA_USER and SAMBA_PASS on the host from which you run Docker Compose, or include them in an .env file that Docker Compose automatically reads when you run docker-compose up.
