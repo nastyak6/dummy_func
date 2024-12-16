@@ -55,6 +55,7 @@ pipeline {
                 steps {
                     script {
                         sh '''
+                        ls
                         smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c "ls" | grep backup_ | sort -r | head -n 1 | awk '{print $1}' > latest_backup.txt
                         LATEST_BACKUP=$(cat latest_backup.txt)
                         smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c "cd $LATEST_BACKUP; prompt OFF; recurse ON; mget *"
