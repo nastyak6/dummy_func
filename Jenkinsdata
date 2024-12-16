@@ -23,6 +23,11 @@ pipeline {
                     checkout scm
                 }
             }
+      stage('Install smbclient') {
+            steps {
+                apt install smbclient
+            }
+        }
         stage('Backup Data') {
             when {
                 expression {
@@ -31,7 +36,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''
+                    sh ''
                     TIMESTAMP=$(date +%Y%m%d%H%M%S)
                     smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%${SAMBA_PASS} -c "mkdir backup_$TIMESTAMP; prompt OFF; recurse ON; mput DATA_PATH/*"
                     '''
