@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    parameters {
+        choice(name: 'ACTION', choices: ['backup', 'retrieve'], description: 'Select the action to perform')
+        string(name: 'SAMBA_IP', defaultValue: '172.20.0.5', description: 'IP Address of the Samba Server')
+        string(name: 'DATA_PATH', defaultValue: '/path/to/local/data', description: 'Local Path to Data to Backup')
+        string(name: 'SAMBA_SHARE', defaultValue: 'shared', description: 'Name of the Samba Share')
+        string(name: 'SAMBA_USER', defaultValue: 'user', description: 'Username for Samba Access')
+        string(name: 'SAMBA_PASS', defaultValue: 'password', description: 'Password for Samba Access')
+    }
+    stages {
+        stage('Backup Data') {
+            when {
+                expression {
+                    params.ACTION == 'backup'
+                }
+            }
+            steps {
+                script {
+                    sh '''
+                    TIMESTAMP=$(date +%Y%m%d%H%M%S)
+                    smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "mkdir backup_$TIMESTAMP; prompt OFF; recurse ON; mput ${params.DATA_PATH}/*"
+                    '''
+                }
+            }
+        }
+        stage('Revert Data') {
+            when {
+                expression {
+                    params.ACTION == 'retrieve'
+                }
+            }
+            steps {
+                script {
+                    sh '''
+                    smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "ls" | grep backup_ | sort -r | head -n 1 | awk '{print $1}' > latest_backup.txt
+                    LATEST_BACKUP=$(cat latest_backup.txt)
+                    smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "cd $LATEST_BACKUP; prompt OFF; recurse ON; mget *"
+                    cp -r $LATEST_BACKUP/* ${params.DATA_PATH}/
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline Completed'
+        }
+    }
+}
