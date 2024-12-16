@@ -41,7 +41,7 @@ pipeline {
                     script {
                         sh '''
                         TIMESTAMP=$(date +%Y%m%d%H%M%S)
-                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%${SAMBA_PASS} -c "mkdir backup_$TIMESTAMP; prompt OFF; recurse ON; mput DATA_PATH/*"
+                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%${SAMBA_PASS} -c "mkdir backup_$TIMESTAMP; prompt OFF; recurse ON; mput $DATA_PATH/*"
                         '''
                     }
                 }
@@ -55,10 +55,10 @@ pipeline {
                 steps {
                     script {
                         sh '''
-                        smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "ls" | grep backup_ | sort -r | head -n 1 | awk '{print $1}' > latest_backup.txt
+                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c "ls" | grep backup_ | sort -r | head -n 1 | awk '{print $1}' > latest_backup.txt
                         LATEST_BACKUP=$(cat latest_backup.txt)
-                        smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "cd $LATEST_BACKUP; prompt OFF; recurse ON; mget *"
-                        cp -r $LATEST_BACKUP/* ${params.DATA_PATH}/
+                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c "cd $LATEST_BACKUP; prompt OFF; recurse ON; mget *"
+                        cp -r $LATEST_BACKUP/* $DATA_PATH/
                         '''
                     }
                 }
