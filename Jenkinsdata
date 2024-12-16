@@ -2,16 +2,20 @@ pipeline {
     agent any
     parameters {
         choice(name: 'ACTION', choices: ['backup', 'retrieve'], description: 'Select the action to perform')
-        string(name: 'SAMBA_IP', defaultValue: '172.20.0.5', description: 'IP Address of the Samba Server')
+        string(name: 'SAMBA_IP', defaultValue: '172.20.0.2', description: 'IP Address of the Samba Server')
         string(name: 'DATA_PATH', defaultValue: '/path/to/local/data', description: 'Local Path to Data to Backup')
         string(name: 'SAMBA_SHARE', defaultValue: 'shared', description: 'Name of the Samba Share')
-        string(name: 'SAMBA_USER', defaultValue: 'user', description: 'Username for Samba Access')
-        string(name: 'SAMBA_PASS', defaultValue: 'password', description: 'Password for Samba Access')
+        string(name: 'SAMBA_USER', defaultValue: 'admin', description: 'Username for Samba Access')
+        string(name: 'SAMBA_PASS', defaultValue: 'admin', description: 'Password for Samba Access')
     }
     environment {
         // Define environment variables
         ACTION = "${params.ACTION}"
         SAMBA_IP = "${params.SAMBA_IP}"
+        DATA_PATH = "${params.DATA_PATH}"
+        SAMBA_SHARE = "${params.SAMBA_SHARE}"
+        SAMBA_USER = "${params.SAMBA_USER}"
+        SAMBA_PASS = "${params.SAMBA_PASS}"
     }
     stages {
         stage('Checkout Code') {
