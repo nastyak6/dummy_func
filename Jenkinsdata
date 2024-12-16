@@ -25,7 +25,10 @@ pipeline {
             }
           stage('Install smbclient') {
                 steps {
-                    sh "apt install smbclient"
+                    sh '''
+                    apt update
+                    apt install smbclient
+                    '''
                 }
             }
             stage('Backup Data') {
