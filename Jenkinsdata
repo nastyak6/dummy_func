@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    TIMESTAMP=$(date +%Y%m%d%H%M%S)
+                    #TIMESTAMP=$(date +%Y%m%d%H%M%S)
                     echo "${params.SAMBA_IP}"
                     #smbclient //${params.SAMBA_IP}/${params.SAMBA_SHARE} -U ${params.SAMBA_USER}%${params.SAMBA_PASS} -c "mkdir backup_$TIMESTAMP; prompt OFF; recurse ON; mput ${params.DATA_PATH}/*"
                     '''
