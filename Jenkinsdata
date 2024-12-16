@@ -27,7 +27,7 @@ pipeline {
                 steps {
                     sh '''
                     apt update
-                    apt install smbclient
+                    apt install smbclient -y
                     '''
                 }
             }
