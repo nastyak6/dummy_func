@@ -61,7 +61,7 @@ pipeline {
                         smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c "ls" | grep backup_ | sort -r | head -n 1 | awk '{print $1}' > latest_backup.txt
                         LATEST_BACKUP=$(cat latest_backup.txt)
                         mkdir -p $JENKINS_DATA_PATH/$LATEST_BACKUP
-                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c"cd $LATEST_BACKUP; lcd $JENKINS_DATA_PATH;prompt; recurse; mget *; exit"
+                        smbclient //$SAMBA_IP/$SAMBA_SHARE -U $SAMBA_USER%$SAMBA_PASS -c"cd $LATEST_BACKUP; lcd $JENKINS_DATA_PATH/$LATEST_BACKUP;prompt; recurse; mget *; exit"
                         '''
                        
                     }
