@@ -11,7 +11,7 @@ pipeline {
     }
     environment {
         // Define environment variables
-        JENKINS_DATA_PATH = "${params.JENKINS_DATA_PATH}
+        JENKINS_DATA_PATH = "${params.JENKINS_DATA_PATH}"
         ACTION = "${params.ACTION}"
         SAMBA_IP = "${params.SAMBA_IP}"
         DATA_PATH = "${params.DATA_PATH}"
