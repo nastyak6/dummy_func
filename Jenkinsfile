@@ -50,15 +50,18 @@ pipeline {
                 }
             }
         }
-        stage('Syntax Check') {
+        stage('Spell Check') {
             steps {
-                echo 'Checking syntax check'
-                script{
+                echo 'Checking spell check'
+                script {
                     try {
-                    def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
-                    echo "Output: '${output}'"
+                        def output = sh(returnStdout: true, script: '''
+                        . venv/bin/activate
+                        codespell *
+                        ''').trim()
+                        echo "Output: '${output}'"
                     } catch (Exception e) {
-                        currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+                        currentBuild.result = 'UNSTABLE' // Mark build as unstable if codespell fails
                     }
                 }
             }
