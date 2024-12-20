@@ -5,7 +5,6 @@ class TestHello(unittest.TestCase):
     """
     Unit test class for validating the say_hello function.
     """
-    
     def test_say_hello(self):
         """
         Test that say_hello() returns the expected string "Hello, World!".
