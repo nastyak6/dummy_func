@@ -14,7 +14,7 @@ pipeline {
                 sh '''
                     apt update
                     apt install -y python3 python3-venv
-                '''
+                    '''
             }
         }
         stage('Setup') {
@@ -31,7 +31,7 @@ pipeline {
         stage('Install Codespell') {
             steps {
                 sh '''
-                . venv/bin/activate
+                 . venv/bin/activate
                  python3 -m pip install codespell
                  '''
             }
