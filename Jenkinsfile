@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9-slim'
-        }
-    }
+    agent any
     environment {
         GITHUB_TOKEN = credentials('github-token')
     }
@@ -28,12 +24,16 @@ pipeline {
 
                     python3 -m venv venv
                     . venv/bin/activate
+                    python3 -m pip install --upgrade pip
                     '''
             }
         }
         stage('Install Codespell') {
             steps {
-                sh 'python3 -m pip install --user codespell'
+                sh '''
+                . venv/bin/activate
+                 python3 -m pip install codespell
+                 '''
             }
         }
         stage('trigger_spell_check_pipeline') {
