@@ -43,7 +43,7 @@ pipeline {
                     try {
                         def output = sh(returnStdout: true, script: '''
                         . venv/bin/activate
-                        codespell *
+                        codespell --skip="venv" *
                         ''').trim()
                         echo "Output: '${output}'"
                     } catch (Exception e) {
