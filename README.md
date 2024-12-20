@@ -12,7 +12,7 @@ The **Dummy Function Project** serves as a demonstration repository to showcase 
   - [say_hello](https://github.com/nastyak6/dummy_func/blob/main/test_hello.py): A simple function that returns `"Hello, World!"`.
   - Unit tests written using `unittest` to validate the function.
   
- ![Jenkins Pipeline](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile):
+ - **[Jenkins Pipeline](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile):**
   - **Multi-Branch Pipeline**: Pipelines for each branch in the repository.
   - **Stages**:
     - **Spell Check**: Ensures code quality by identifying spelling errors using `codespell`.
@@ -40,7 +40,7 @@ The [Jenkinsfile](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile) 
    - Runs all unit tests using Python’s `unittest` module.
    - Ensures the correctness of the `say_hello` function.
 
-5. **GitHub Release**:
+5. **[GitHub Release](https://github.com/nastyak6/dummy_func/releases)**:
    - Uses the GitHub API to create a new release based on the pipeline results.
    - The release tag is dynamically generated with a timestamp.
 
