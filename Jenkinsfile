@@ -27,7 +27,11 @@ pipeline {
                     '''
             }
         }
-
+        stage('Install Codespell') {
+            steps {
+                sh 'pip install --user codespell'
+            }
+        }
         stage('trigger_spell_check_pipeline') {
             steps {
                 echo 'Checking spell check'
