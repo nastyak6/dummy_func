@@ -30,16 +30,15 @@ pipeline {
         }
         stage('Install Codespell') {
             steps {
-                
+                sh '''
+                . venv/bin/activate
+                 python3 -m pip install codespell
+                 '''
             }
         }
         stage('Spell Check') {
             steps {
                 echo 'Checking spell check'
-                sh '''
-                . venv/bin/activate
-                 python3 -m pip install codespell
-                 '''
                 script {
                     try {
                     def output = sh(returnStdout: true, script: 'codespell *').trim()
