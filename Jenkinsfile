@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.9-slim'
+        }
+    }
     environment {
         GITHUB_TOKEN = credentials('github-token')
     }
