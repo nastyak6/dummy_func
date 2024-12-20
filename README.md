@@ -73,6 +73,10 @@ The `Jenkinsfile` in this repository defines the following stages:
 
 
 ## Example Pipeline Output
-![image](https://github.com/user-attachments/assets/6594fd6f-535c-4bc8-adb8-47fb1912dfdc)
+![image](https://github.com/user-attachments/assets/fb964e4c-0282-4cd1-a219-4d1ebcff5f72)
+
+![image](https://github.com/user-attachments/assets/4afa636d-7eb7-4906-85ff-cba2be050cd7)
+
+
 
 
