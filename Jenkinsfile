@@ -28,11 +28,11 @@ pipeline {
                     '''
             }
         }
-        stage('Install Codespell') {
+        stage('Install codespell and pylint') {
             steps {
                 sh '''
                  . venv/bin/activate
-                 python3 -m pip install codespell
+                 python3 -m pip install codespell pylint
                  '''
             }
         }
@@ -54,13 +54,15 @@ pipeline {
         }
         stage('Syntax Check') {
             steps {
-                echo 'Checking syntax check'
-                script{
+                script {
                     try {
-                    def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
-                    echo "Output: '${output}'"
+                        def output = sh(returnStdout: true, script: '''
+                        . venv/bin/activate
+                        pylint --disable=missing-module-docstring,missing-function-docstring func.py test_hello.py
+                        ''').trim()
+                        echo "Output: '${output}'"
                     } catch (Exception e) {
-                        currentBuild.result = 'UNSTABLE' // Mark build as unstable if codespell fails
+                        currentBuild.result = 'UNSTABLE'
                     }
                 }
             }
