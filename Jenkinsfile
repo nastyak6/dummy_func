@@ -54,11 +54,13 @@ pipeline {
         stage('Syntax Check') {
             steps {
                 echo 'Checking syntax check'
-                try {
-                def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
-                echo "Output: '${output}'"
-                } catch (Exception e) {
-                    currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+                script{
+                    try {
+                    def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+                    echo "Output: '${output}'"
+                    } catch (Exception e) {
+                        currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+                    }
                 }
             }
         }
