@@ -31,6 +31,15 @@ pipeline {
         stage('trigger_spell_check_pipeline') {
             steps {
                 echo 'Checking spell check'
+                script {
+                    try {
+                    def output = sh(returnStdout: true, script: 'codespell *').trim()
+                    echo "Output: '${output}'"
+                    } catch (Exception e) {
+                        currentBuild.result = 'UNSTABLE' //so that if pylint failes if pylint failes 
+                    }
+                
+                }
             }
         }
         stage('trigger_syntax_check_pipeline') {
