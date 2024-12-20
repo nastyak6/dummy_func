@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    // triggers {
-    //     // cron('*/10 * * * *') // Runs every day at 11 PM (23:00)
-    // }
+    triggers {
+        cron('*/10 * * * *') // Runs every day at 11 PM (23:00)
+    }
     stages {
         stage('main_pipeline') {
             steps {
