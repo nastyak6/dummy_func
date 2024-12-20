@@ -19,7 +19,7 @@ The **Dummy Function Project** serves as a demonstration repository to showcase 
     - **Syntax Check**: Validates Python code with `pylint`.
     - **Unit Tests**: Runs all test cases to ensure code functionality.
     - **GitHub Release**: Automatically creates a new GitHub release based on the pipeline's output.
-  - **Cron Trigger**: The pipeline can be scheduled to run periodically, currently implemented in `nightly` branch (e.g., every 12 hours).
+  - **Cron Trigger**: The pipeline can be scheduled to run periodically, currently implemented in [`nightly`](https://github.com/nastyak6/dummy_func/tree/nightly)  branch (e.g., every 12 hours).
 
 ## How It Works
 
