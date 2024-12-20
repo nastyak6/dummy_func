@@ -41,20 +41,6 @@ pipeline {
                 echo 'Checking spell check'
                 script {
                     try {
-                    def output = sh(returnStdout: true, script: 'codespell *').trim()
-                    echo "Output: '${output}'"
-                    } catch (Exception e) {
-                        currentBuild.result = 'UNSTABLE' //so that if pylint failes if pylint failes 
-                    }
-                
-                }
-            }
-        }
-        stage('Spell Check') {
-            steps {
-                echo 'Checking spell check'
-                script {
-                    try {
                         def output = sh(returnStdout: true, script: '''
                         . venv/bin/activate
                         codespell *
@@ -62,6 +48,19 @@ pipeline {
                         echo "Output: '${output}'"
                     } catch (Exception e) {
                         currentBuild.result = 'UNSTABLE' // Mark build as unstable if codespell fails
+                    }
+                }
+            }
+        }
+        stage('Syntax Check') {
+            steps {
+                echo 'Checking syntax check'
+                script{
+                    try {
+                    def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+                    echo "Output: '${output}'"
+                    } catch (Exception e) {
+                        currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
                     }
                 }
             }
