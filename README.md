@@ -9,10 +9,10 @@ The **Dummy Function Project** serves as a demonstration repository to showcase 
 ## Features
 
 - **Python Functionality**:
-  - `say_hello`: A simple function that returns `"Hello, World!"`.
+  - [say_hello](https://github.com/nastyak6/dummy_func/blob/main/test_hello.py): A simple function that returns `"Hello, World!"`.
   - Unit tests written using `unittest` to validate the function.
   
-- **Jenkins Pipeline**:
+- **![Jenkins Pipeline](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile)**:
   - **Multi-Branch Pipeline**: Pipelines for each branch in the repository.
   - **Stages**:
     - **Spell Check**: Ensures code quality by identifying spelling errors using `codespell`.
@@ -24,7 +24,7 @@ The **Dummy Function Project** serves as a demonstration repository to showcase 
 ## How It Works
 
 ### Jenkins Pipeline
-The `Jenkinsfile` in this repository defines the following stages:
+The [Jenkinsfile](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile) in this repository defines the following stages:
 1. **Install Python Environment**:
    - Installs `Python 3`, `venv`, and necessary dependencies (`codespell`, `pylint`).
    - Sets up a virtual environment to isolate the build environment.
