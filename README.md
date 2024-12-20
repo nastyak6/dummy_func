@@ -13,13 +13,13 @@ The **Dummy Function Project** serves as a demonstration repository to showcase 
   - Unit tests written using `unittest` to validate the function.
   
 - **Jenkins Pipeline**:
-  - **Multi-Branch Pipeline**: Automatically triggers pipelines for each branch in the repository.
+  - **Multi-Branch Pipeline**: Pipelines for each branch in the repository.
   - **Stages**:
     - **Spell Check**: Ensures code quality by identifying spelling errors using `codespell`.
     - **Syntax Check**: Validates Python code with `pylint`.
     - **Unit Tests**: Runs all test cases to ensure code functionality.
     - **GitHub Release**: Automatically creates a new GitHub release based on the pipeline's output.
-  - **Cron Trigger**: The pipeline can be scheduled to run periodically (e.g., every 12 hours).
+  - **Cron Trigger**: The pipeline can be scheduled to run periodically, currently implemented in `nightly` branch (e.g., every 12 hours).
 
 ## How It Works
 
@@ -57,9 +57,7 @@ The `Jenkinsfile` in this repository defines the following stages:
 
 - **Jenkins**: A working Jenkins setup with a multi-branch pipeline plugin installed.
 - **Python 3.8 or higher**: For running the code and tests.
-- **Dependencies**: Installed via `pip`:
-  ```bash
-  pip install codespell pylint
+
 
   ## How to Run
 
