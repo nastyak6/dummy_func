@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Install Codespell') {
             steps {
-                sh 'pip install --user codespell'
+                sh 'python3 -m pip install --user codespell'
             }
         }
         stage('trigger_spell_check_pipeline') {
