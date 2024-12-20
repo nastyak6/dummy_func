@@ -70,3 +70,9 @@ The `Jenkinsfile` in this repository defines the following stages:
     Configure the repository URL in Jenkins.
     Add credentials for accessing GitHub.
     Start the pipeline to see automated checks and releases.
+
+
+## Example Pipeline Output
+![image](https://github.com/user-attachments/assets/6594fd6f-535c-4bc8-adb8-47fb1912dfdc)
+
+
