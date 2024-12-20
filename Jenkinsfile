@@ -4,7 +4,7 @@ pipeline {
         GITHUB_TOKEN = credentials('github-token')
     }
     stages {
-        stage('main_pipeline') {
+        stage('Main Pipeline') {
             steps {
                 echo 'Starting main pipeline'
             }
@@ -12,8 +12,8 @@ pipeline {
         stage('Install Python') {
             steps {
                 sh '''
-                        apt update
-                        apt install -y python3 python3-venv
+                    apt update
+                    apt install -y python3 python3-venv
                 '''
             }
         }
@@ -36,7 +36,7 @@ pipeline {
                  '''
             }
         }
-        stage('trigger_spell_check_pipeline') {
+        stage('Spell Check') {
             steps {
                 echo 'Checking spell check'
                 script {
@@ -50,9 +50,15 @@ pipeline {
                 }
             }
         }
-        stage('trigger_syntax_check_pipeline') {
+        stage('Syntax Check') {
             steps {
                 echo 'Checking syntax check'
+                try {
+                def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+                echo "Output: '${output}'"
+                } catch (Exception e) {
+                    currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+                }
             }
         }
         stage('Run Unit Tests') {
