@@ -55,7 +55,7 @@ The [Jenkinsfile](https://github.com/nastyak6/dummy_func/blob/main/Jenkinsfile) 
 
 ## Requirements
 
-- **Jenkins**: A working Jenkins setup with a multi-branch pipeline plugin installed.
+- **Jenkins**: [A working Jenkins setup with a multi-branch pipeline plugin installed.](https://github.com/annageryes/Final_Project_Devops)
 - **Python 3.8 or higher**: For running the code and tests.
 
 
