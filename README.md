@@ -5,6 +5,7 @@
 ## Overview
 
 The **Dummy Function Project** serves as a demonstration repository to showcase the capabilities of a Jenkins multi-branch pipeline. This repository contains a simple Python function, `say_hello`, accompanied by a unit test to validate the function. The primary focus is on the integration and automation provided by the Jenkins pipeline.
+This repo was created as a part of our devops course , and is used in this [PROJECT](https://github.com/annageryes/Final_Project_Devops)
 
 ## Features
 
